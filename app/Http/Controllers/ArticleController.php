@@ -39,16 +39,11 @@ class ArticleController extends Controller
      *
      * Used observer to send an email and set user_id to article
      *
-     * @param  Request  $request
+     * @param  StoreArticleRequest  $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreArticleRequest $request): RedirectResponse
     {
-        $request->validate([
-            'title' => ['required', 'between:2,50'],
-            'body' => ['required', 'string']
-        ]);
-
         $article = Article::create([
             'title' => $request->title,
             'body' => $request->body,
