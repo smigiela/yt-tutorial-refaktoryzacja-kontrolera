@@ -44,11 +44,7 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request): RedirectResponse
     {
-        $article = Article::create($request->validated());
-
-        // send email notification to user id 1
-        $user = User::where('id', 1);
-        $user->notify(new AddedArticleNotification($article));
+        Article::create($request->validated());
 
         return redirect()->route('articles.index')->with('success', 'Added successfully');
     }
